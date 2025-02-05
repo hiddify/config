@@ -12,7 +12,7 @@ python -m pip config set global.index-url https://pypi.org/simple > /dev/null
 if [[ $COUNTRY == 'cn' ]]; then
     sudo timedatectl set-timezone Asia/Shanghai
 elif [[ $COUNTRY == 'ru' ]]; then
-    sudo timedatectl set-timezone Asia/Moscow
+    sudo timedatectl set-timezone Europe/Moscow
 else
     sudo timedatectl set-timezone Asia/Tehran
 fi
