@@ -157,8 +157,15 @@ def apply_users():
 
 @cli.command('update-wg-usage')
 def update_wg_usage():
-    wg_raw_output = subprocess.check_output(['wg', 'show', 'hiddifywg', 'transfer'])
-    print(wg_raw_output.decode())
+    try:
+        wg_raw_output = subprocess.check_output(['wg', 'show', 'hiddifywg', 'transfer'])
+        output_str = wg_raw_output.decode()
+        if 'hiddifywg' in output_str:
+            print(output_str)
+        else:
+          raise Exception("Interface hiddifywg (wireguard) not found")
+    except subprocess.CalledProcessError as e:
+        print("Can not find interface hiddifywg, you can try change port wireguard.", e)
 
 
 if __name__ == "__main__":
